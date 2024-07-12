@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@color/EerieBlack">
+
+    <ImageView
+        android:id="@+id/movie_poster"
+        android:layout_width="160dp"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="top" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:id="@+id/movie_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Dog Day Afternoon"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <ImageView
+                android:id="@+id/star_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/star_icon"
+                app:tint="@color/Gray"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp" />
+
+            <TextView
+                android:id="@+id/movie_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8.0"
+                android:textColor="@color/Gray"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <ImageView
+                android:id="@+id/world_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/world_icon"
+                app:tint="@color/Gray"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp" />
+
+            <TextView
+                android:id="@+id/movie_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USA"
+                android:textColor="@color/Gray"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <ImageView
+                android:id="@+id/date_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/date_icon"
+                app:tint="@color/Gray"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp" />
+
+            <TextView
+                android:id="@+id/movie_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1975"
+                android:textColor="@color/Gray"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/more_info_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get more info"
+                android:textColor="@color/Red"
+                android:background="?attr/selectableItemBackground"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+
+            <ImageView
+                android:id="@+id/rightarrow_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/rightarrow_icon"
+                app:tint="@color/Red"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
