@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.features.homeScreen.presentation.ui.adapters.GenreAdapter
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.MovieAdapter
-import com.example.myapplication.features.homeScreen.presentation.viewmodel.MovieViewModel
+import com.example.myapplication.features.homeScreen.presentation.viewmodel.HomeViewModel
 import com.example.myapplication.features.homeScreen.presentation.viewmodel.MovieViewModelFactory
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     //region Properties
     private lateinit var homeBinding: ActivityMainBinding
-    private lateinit var homeViewModel: MovieViewModel
+    private lateinit var homeViewModel: HomeViewModel
     //endregion
 
 
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initialViewModel() {
-        homeViewModel = ViewModelProvider(this, MovieViewModelFactory())[MovieViewModel::class.java]
+        homeViewModel = ViewModelProvider(this, MovieViewModelFactory())[HomeViewModel::class.java]
     }
 
 
@@ -77,11 +77,20 @@ class MainActivity : AppCompatActivity() {
             homeBinding.moviesList.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         }
+
+        homeViewModel.genres.observe(this) { genres ->
+
+            val genreAdapter = GenreAdapter(genres)
+            homeBinding.genresList.adapter = genreAdapter
+            homeBinding.genresList.layoutManager =
+                LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        }
     }
 
 
     private fun getLists() {
         homeViewModel.getAllMovies(genreId = 14)
+        homeViewModel.getAllGenres()
     }
     //endregion
 }

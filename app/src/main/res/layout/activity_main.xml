@@ -28,7 +28,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/genres_list"
         android:layout_width="wrap_content"
-        android:layout_height="64dp"
+        android:layout_height="80dp"
         android:clipToPadding="false"
         android:orientation="horizontal" />
 
