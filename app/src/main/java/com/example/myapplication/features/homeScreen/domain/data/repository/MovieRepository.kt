@@ -1,12 +1,12 @@
 package com.example.myapplication.features.homeScreen.domain.data.repository
 
-import MovieResponse
-import com.example.myapplication.sharedComponents.api.APIService
+import com.example.myapplication.features.homeScreen.domain.data.model.MovieResponse
+import com.example.myapplication.sharedComponents.api.MovieBriefAPIService
 
-class MovieRepository(private val apiService: APIService) {
+class MovieRepository(private val movieBriefApiService: MovieBriefAPIService) {
 
     suspend fun getMoviesByGenre(genreId: Int): List<MovieResponse.MovieItem> {
-        val response = apiService.getMoviesByGenre(genreId)
+        val response = movieBriefApiService.getMoviesByGenre(genreId)
         return response.data // Return just the list of movies
     }
 }

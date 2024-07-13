@@ -1,14 +1,16 @@
 package com.example.myapplication.features.homeScreen.presentation.ui.adapters
 
-import MovieResponse
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.myapplication.DetailsScreenActivity
 import com.example.myapplication.databinding.ItemMovieBinding
+import com.example.myapplication.features.homeScreen.domain.data.model.MovieResponse
 
 class MovieAdapter(
-    private val items: List<MovieResponse.MovieItem>
+    private val movieItems: List<MovieResponse.MovieItem>
 ) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,17 +24,16 @@ class MovieAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data = items[position]
-        holder.bind(data)
+        holder.bind(movieItems[position])
     }
 
-    override fun getItemCount() = items.size
+    override fun getItemCount() = movieItems.size
 
     inner class ViewHolder(private val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MovieResponse.MovieItem) {
 
-            Glide.with(binding.root.context)
+            Glide.with(binding.moviePoster.context)
                 .load(item.poster)
                 .into(binding.moviePoster)
 
@@ -41,11 +42,13 @@ class MovieAdapter(
             binding.movieCountry.text = item.country
             binding.movieYear.text = item.year
 
-
-
-
             binding.root.setOnClickListener {
-                // Handle item click
+                val context = it.context
+                val intent = Intent(context, DetailsScreenActivity::class.java).apply {
+                    putExtra("movieId", item.id)
+                }
+                context.startActivity(intent)
+
             }
         }
     }

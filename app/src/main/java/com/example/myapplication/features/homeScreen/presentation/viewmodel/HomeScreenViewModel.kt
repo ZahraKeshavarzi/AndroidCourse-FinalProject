@@ -1,6 +1,5 @@
 package com.example.myapplication.features.homeScreen.presentation.viewmodel
 
-import MovieResponse
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.features.homeScreen.domain.data.model.Genre
+import com.example.myapplication.features.homeScreen.domain.data.model.MovieResponse
 import com.example.myapplication.features.homeScreen.domain.data.repository.GenreRepository
 import com.example.myapplication.features.homeScreen.domain.data.repository.MovieRepository
 import com.example.myapplication.sharedComponents.api.API
@@ -48,7 +48,7 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val ge
 class MovieModule {
     companion object {
         val watchRepository: MovieRepository by lazy {
-            MovieRepository(API.baseUserService)
+            MovieRepository(API.homeScreenService)
         }
     }
 }

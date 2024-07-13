@@ -1,4 +1,7 @@
+package com.example.myapplication.features.homeScreen.domain.data.model
+
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class MovieResponse(
     @SerializedName("status")
@@ -9,7 +12,8 @@ data class MovieResponse(
     val data: List<MovieItem>,
     @SerializedName("metadata")
     val metadata: Metadata
-) {
+) : Serializable {
+
     data class MovieItem(
         @SerializedName("id")
         val id: Int,
@@ -26,8 +30,16 @@ data class MovieResponse(
         @SerializedName("genres")
         val genres: List<String>,
         @SerializedName("images")
-        val images: List<String>
-    )
+        val images: List<String>,
+        @SerializedName("runtime")
+        val runtime: String,
+        @SerializedName("released")
+        val released: String,
+        @SerializedName("plot")
+        val plot: String,
+        @SerializedName("actors")
+        val actors: String
+    ) : Serializable
 
     data class Metadata(
         @SerializedName("has_next")
@@ -42,5 +54,5 @@ data class MovieResponse(
         val pageCount: Int,
         @SerializedName("total_count")
         val totalCount: Int
-    )
+    ) : Serializable
 }
