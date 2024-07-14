@@ -15,16 +15,20 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
+    //region Properties
     private lateinit var homeScreenBinding: ActivityMainBinding
     private lateinit var homeViewModel: HomeViewModel
+    //endregion
 
+    //region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initialBinding()
         initialViewModel()
         configViewModel()
-        getLists()
+        callAPI()
     }
+    //endregion
 
     private fun initialBinding() {
         homeScreenBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,21 +42,21 @@ class MainActivity : AppCompatActivity() {
     private fun configViewModel() {
 
         homeViewModel.movies.observe(this) { movies ->
-            val movieAdapter = MovieAdapter(movies)
+            val movieAdapter = MovieAdapter(movies.data)
             homeScreenBinding.moviesList.adapter = movieAdapter
             homeScreenBinding.moviesList.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         }
 
         homeViewModel.genres.observe(this) { genres ->
-            val genreAdapter = GenreAdapter(genres)
+            val genreAdapter = GenreAdapter(genres.data)
             homeScreenBinding.genresList.adapter = genreAdapter
             homeScreenBinding.genresList.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         }
     }
 
-    private fun getLists() {
+    private fun callAPI() {
         CoroutineScope(Dispatchers.Main).launch {
             homeViewModel.getAllMovies(genreId = 14)
             homeViewModel.getAllGenres()

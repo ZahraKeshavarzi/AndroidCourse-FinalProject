@@ -5,26 +5,14 @@ import com.example.myapplication.sharedComponents.api.MovieBriefAPIService
 
 class MovieRepository(private val movieBriefApiService: MovieBriefAPIService) {
 
-    suspend fun getMoviesByGenre(genreId: Int): List<MovieResponse.MovieItem> {
+    suspend fun getAllMovies(genreId: Int): Result<MovieResponse> {
         val response = movieBriefApiService.getMoviesByGenre(genreId)
-        return response.data // Return just the list of movies
+        return if (response.isSuccessful) {
+            response.body()?.let {
+                Result.success(it)
+            } ?: Result.failure(Throwable("ERROR fetching movies!"))
+        } else {
+            Result.failure(Throwable("Service FAILED!"))
+        }
     }
 }
-
-
-//class MovieRepository(private val api: APIService) {
-//
-//    suspend fun getMoviesByGenre(genreId: Int): Result<MovieResponse> {
-//        val response = api.getMoviesByGenre(genreId)
-//        return if (response.isSuccessful) {
-//            val body = response.body()
-//            if (body != null) {
-//                Result.success(body)
-//            } else {
-//                Result.failure(Throwable("Error fetching movies"))
-//            }
-//        } else {
-//            Result.failure(Throwable("Service failed"))
-//        }
-//    }
-//}

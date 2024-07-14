@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.DetailsScreenActivity
 import com.example.myapplication.databinding.ItemMovieBinding
-import com.example.myapplication.features.homeScreen.domain.data.model.MovieResponse
+import com.example.myapplication.features.homeScreen.domain.data.model.MovieData
 
 class MovieAdapter(
-    private val movieItems: List<MovieResponse.MovieItem>
+    private val movieItems: List<MovieData>
 ) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,7 +31,7 @@ class MovieAdapter(
 
     inner class ViewHolder(private val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: MovieResponse.MovieItem) {
+        fun bind(item: MovieData) {
 
             Glide.with(binding.moviePoster.context)
                 .load(item.poster)

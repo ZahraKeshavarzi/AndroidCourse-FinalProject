@@ -1,32 +1,17 @@
 package com.example.myapplication.features.homeScreen.domain.data.repository
 
-import com.example.myapplication.features.homeScreen.domain.data.model.Genre
+import com.example.myapplication.features.homeScreen.domain.data.model.GenreResponse
+import com.example.myapplication.sharedComponents.api.GenreAPIService
 
-class GenreRepository {
-    fun getAllGenres(): ArrayList<Genre> {
-        return arrayListOf(
-            Genre("Crime"),
-            Genre("Drama"),
-            Genre("Action"),
-            Genre("Biography"),
-            Genre("History"),
-            Genre("Adventure"),
-            Genre("Fantasy"),
-            Genre("Western"),
-            Genre("comedy"),
-            Genre("Sci-Fi"),
-            Genre("Mystery"),
-            Genre("Thriller"),
-            Genre("Family"),
-            Genre("War"),
-            Genre("Animation"),
-            Genre("Romance"),
-            Genre("Horror"),
-            Genre("Music"),
-            Genre("Film-Noir"),
-            Genre("Musical"),
-            Genre("Sport"),
-
-        )
+class GenreRepository(private val genreAPIService: GenreAPIService) {
+    suspend fun getAllGenres(): Result<GenreResponse> {
+        val response = genreAPIService.getAllGenre()
+        return if (response.isSuccessful) {
+            response.body()?.let {
+                Result.success(it)
+            } ?: Result.failure(Throwable("ERROR fetching genres!"))
+        } else {
+            Result.failure(Throwable("Service FAILED!"))
+        }
     }
 }

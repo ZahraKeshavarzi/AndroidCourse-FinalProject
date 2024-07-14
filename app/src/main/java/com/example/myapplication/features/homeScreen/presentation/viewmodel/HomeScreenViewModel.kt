@@ -1,12 +1,11 @@
 package com.example.myapplication.features.homeScreen.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.features.homeScreen.domain.data.model.Genre
+import com.example.myapplication.features.homeScreen.domain.data.model.GenreResponse
 import com.example.myapplication.features.homeScreen.domain.data.model.MovieResponse
 import com.example.myapplication.features.homeScreen.domain.data.repository.GenreRepository
 import com.example.myapplication.features.homeScreen.domain.data.repository.MovieRepository
@@ -16,31 +15,43 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val movieRepository: MovieRepository, private val genreRepository: GenreRepository) : ViewModel() {
 
-    private val _movies = MutableLiveData<List<MovieResponse.MovieItem>>()
-    val movies: LiveData<List<MovieResponse.MovieItem>> get() = _movies
+    //region Properties
+    private val _movies = MutableLiveData<MovieResponse>()
+    val movies: LiveData<MovieResponse> get() = _movies
 
-//    private val _loadingState = MutableLiveData<Boolean>()
-//    val loadingState: LiveData<Boolean> get() = _loadingState
 
-    private val _genres = MutableLiveData<List<Genre>>()
-    val genres: LiveData<List<Genre>> get() = _genres
+    private val _genres = MutableLiveData<GenreResponse>()
+    val genres: LiveData<GenreResponse> get() = _genres
+
+    companion object{
+        val genreId = MutableLiveData(14)
+    }
+    //endregion
+
+    //region Methods
     fun getAllMovies(genreId: Int) {
         viewModelScope.launch {
-            //_loadingState.postValue(true)
-            try {
-                val response = movieRepository.getMoviesByGenre(genreId)
-                _movies.postValue(response)
-                //_loadingState.postValue(false)
-            } catch (e: Exception) {
-                Log.e("MovieViewModel", "Error fetching movies", e)
-                //_loadingState.postValue(false)
+            val response = movieRepository.getAllMovies(genreId)
+            if (response.isSuccess) {
+                response.onSuccess {
+                    _movies.postValue(it)
+                }.onFailure {
+                }
             }
         }
     }
 
-    fun getAllGenres() {
-        val genreList = genreRepository.getAllGenres()
-        _genres.postValue(genreList)
+    fun getAllGenres(){
+        viewModelScope.launch {
+            val response = genreRepository.getAllGenres()
+            if (response.isSuccess) {
+                response.onSuccess {
+                    _genres.postValue(it)
+                }.onFailure {
+                    //TODO
+                }
+            }
+        }
     }
 }
 
@@ -48,7 +59,7 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val ge
 class MovieModule {
     companion object {
         val watchRepository: MovieRepository by lazy {
-            MovieRepository(API.homeScreenService)
+            MovieRepository(API.homeScreenServiceMovies)
         }
     }
 }
@@ -57,7 +68,7 @@ class MovieModule {
 class GenreModule {
     companion object {
         val watchRepository: GenreRepository by lazy {
-            GenreRepository()
+            GenreRepository(API.homeScreenServiceGenres)
         }
     }
 }

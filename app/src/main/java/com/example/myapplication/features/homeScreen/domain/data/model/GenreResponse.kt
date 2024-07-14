@@ -3,13 +3,12 @@ package com.example.myapplication.features.homeScreen.domain.data.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class MovieResponse(
+data class GenreResponse(
     @SerializedName("status")
     val status: Int,
     @SerializedName("description")
     val description: Map<String, String>,
     @SerializedName("data")
-    val data: List<MovieData>,
-    @SerializedName("metadata")
-    val metadata: MovieMetadata
+    val data: List<GenreData>
 ) : Serializable
+

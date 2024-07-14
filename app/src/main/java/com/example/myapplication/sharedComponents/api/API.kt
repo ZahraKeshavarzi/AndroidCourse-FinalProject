@@ -25,12 +25,21 @@ class API {
                 .client(myAppClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
 
-        val homeScreenService: MovieBriefAPIService by lazy {
+
+        val homeScreenServiceGenres: GenreAPIService by lazy {
+            apiBuilder
+                .baseUrl(baseURL)
+                .build()
+                .create(GenreAPIService::class.java)
+        }
+
+        val homeScreenServiceMovies: MovieBriefAPIService by lazy {
             apiBuilder
                 .baseUrl(baseURL)
                 .build()
                 .create(MovieBriefAPIService::class.java)
         }
+
 
         val DetailsScreenService: MovieDetailsAPIService by lazy {
             apiBuilder
@@ -38,6 +47,7 @@ class API {
                 .build()
                 .create(MovieDetailsAPIService::class.java)
         }
+
 
         private val gson: Gson get() = GsonBuilder().setLenient().create()
 
