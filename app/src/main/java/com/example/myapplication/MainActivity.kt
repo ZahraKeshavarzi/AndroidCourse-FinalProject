@@ -3,12 +3,14 @@ package com.example.myapplication
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.GenreAdapter
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.MovieAdapter
+import com.example.myapplication.features.homeScreen.presentation.ui.adapters.PostersSliderAdapter
 import com.example.myapplication.features.homeScreen.presentation.viewmodel.HomeViewModel
-import com.example.myapplication.features.homeScreen.presentation.viewmodel.MovieViewModelFactory
+import com.example.myapplication.features.homeScreen.presentation.viewmodel.HomeViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,17 +38,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialViewModel() {
-        homeViewModel = ViewModelProvider(this, MovieViewModelFactory())[HomeViewModel::class.java]
+        homeViewModel = ViewModelProvider(this, HomeViewModelFactory())[HomeViewModel::class.java]
     }
 
     private fun configViewModel() {
 
         homeViewModel.movies.observe(this) { movies ->
-            val movieAdapter = MovieAdapter(movies.data)
+
+            val moviesList = movies.data
+            val movieAdapter = MovieAdapter(moviesList)
             homeScreenBinding.moviesList.adapter = movieAdapter
             homeScreenBinding.moviesList.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+            val postersSliderAdapter = PostersSliderAdapter(moviesList)
+            homeScreenBinding.postersSlider.adapter = postersSliderAdapter
+            homeScreenBinding.postersSlider.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            homeScreenBinding.postersSlider.itemAnimator = DefaultItemAnimator()
         }
+
 
         homeViewModel.genres.observe(this) { genres ->
             val genreAdapter = GenreAdapter(genres.data)
@@ -54,7 +64,13 @@ class MainActivity : AppCompatActivity() {
             homeScreenBinding.genresList.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         }
+
+
+        HomeViewModel.genreId.observe(this) {genreID ->
+            homeViewModel.getAllMovies(genreID)
+        }
     }
+
 
     private fun callAPI() {
         CoroutineScope(Dispatchers.Main).launch {

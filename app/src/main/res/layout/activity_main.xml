@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/EerieBlack">
+    android:background="@color/EerieBlack"
+    tools:context=".MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/posters_slider"
                 android:layout_width="match_parent"
-                android:layout_height="340dp"
+                android:layout_height="420dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:clipToPadding="false"
@@ -45,7 +46,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/genres_list"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
