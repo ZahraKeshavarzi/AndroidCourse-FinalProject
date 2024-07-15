@@ -7,7 +7,7 @@ data class MovieResponse(
     @SerializedName("status")
     val status: Int,
     @SerializedName("description")
-    val description: Map<String, String>,
+    val description: MovieDescription,
     @SerializedName("data")
     val data: List<MovieData>,
     @SerializedName("metadata")

@@ -7,7 +7,7 @@ data class GenreResponse(
     @SerializedName("status")
     val status: Int,
     @SerializedName("description")
-    val description: Map<String, String>,
+    val description: GenreDescription,
     @SerializedName("data")
     val data: List<GenreData>
 ) : Serializable
