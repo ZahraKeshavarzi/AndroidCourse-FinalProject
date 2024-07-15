@@ -25,7 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".DetailsScreenActivity">
+        </activity>
+
+        <activity android:name=".SearchScreenActivity">
         </activity>
 
     </application>

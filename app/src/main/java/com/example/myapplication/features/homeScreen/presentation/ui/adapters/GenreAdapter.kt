@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.ItemGenreBinding
 import com.example.myapplication.features.homeScreen.domain.data.model.GenreData
-import com.example.myapplication.features.homeScreen.presentation.viewmodel.HomeViewModel
+import com.example.myapplication.features.homeScreen.presentation.viewmodel.HomeScreenViewModel
 
 
 class GenreAdapter(private val genreData: List<GenreData>) :
@@ -31,7 +31,7 @@ class GenreAdapter(private val genreData: List<GenreData>) :
         fun bindData(genreData: GenreData) {
             binding.genreButton.text = genreData.name
             binding.root.setOnClickListener {
-                HomeViewModel.genreId.postValue(genreData.id)
+                HomeScreenViewModel.genreId.postValue(genreData.id)
             }
         }
     }

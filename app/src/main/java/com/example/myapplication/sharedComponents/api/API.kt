@@ -49,6 +49,14 @@ class API {
         }
 
 
+        val searchScreenService: SearchAPIService by lazy {
+            apiBuilder
+                .baseUrl(baseURL)
+                .build()
+                .create(SearchAPIService::class.java)
+        }
+
+
         private val gson: Gson get() = GsonBuilder().setLenient().create()
 
         private val interceptor: HttpLoggingInterceptor

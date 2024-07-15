@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -9,7 +10,7 @@ import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.GenreAdapter
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.MovieAdapter
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.PostersSliderAdapter
-import com.example.myapplication.features.homeScreen.presentation.viewmodel.HomeViewModel
+import com.example.myapplication.features.homeScreen.presentation.viewmodel.HomeScreenViewModel
 import com.example.myapplication.features.homeScreen.presentation.viewmodel.HomeViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     //region Properties
     private lateinit var homeScreenBinding: ActivityMainBinding
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeScreenViewModel: HomeScreenViewModel
     //endregion
 
     //region Lifecycle
@@ -38,12 +39,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialViewModel() {
-        homeViewModel = ViewModelProvider(this, HomeViewModelFactory())[HomeViewModel::class.java]
+        homeScreenViewModel = ViewModelProvider(this, HomeViewModelFactory())[HomeScreenViewModel::class.java]
     }
 
     private fun configViewModel() {
 
-        homeViewModel.movies.observe(this) { movies ->
+        homeScreenViewModel.movies.observe(this) { movies ->
 
             val moviesList = movies.data
             val movieAdapter = MovieAdapter(moviesList)
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        homeViewModel.genres.observe(this) { genres ->
+        homeScreenViewModel.genres.observe(this) { genres ->
             val genreAdapter = GenreAdapter(genres.data)
             homeScreenBinding.genresList.adapter = genreAdapter
             homeScreenBinding.genresList.layoutManager =
@@ -66,16 +67,22 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        HomeViewModel.genreId.observe(this) {genreID ->
-            homeViewModel.getAllMovies(genreID)
+        HomeScreenViewModel.genreId.observe(this) { genreID ->
+            homeScreenViewModel.getAllMovies(genreID)
+        }
+
+
+        homeScreenBinding.searchIcon.setOnClickListener {
+            val intent = Intent(this, SearchScreenActivity::class.java)
+            startActivity(intent)
         }
     }
 
 
     private fun callAPI() {
         CoroutineScope(Dispatchers.Main).launch {
-            homeViewModel.getAllMovies(genreId = 14)
-            homeViewModel.getAllGenres()
+            homeScreenViewModel.getAllMovies(genreId = 14)
+            homeScreenViewModel.getAllGenres()
         }
     }
 }

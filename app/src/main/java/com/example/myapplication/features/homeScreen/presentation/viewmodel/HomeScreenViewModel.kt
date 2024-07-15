@@ -13,7 +13,7 @@ import com.example.myapplication.sharedComponents.api.API
 import kotlinx.coroutines.launch
 
 
-class HomeViewModel(private val movieRepository: MovieRepository, private val genreRepository: GenreRepository) : ViewModel() {
+class HomeScreenViewModel(private val movieRepository: MovieRepository, private val genreRepository: GenreRepository) : ViewModel() {
 
     //region Properties
     private val _movies = MutableLiveData<MovieResponse>()
@@ -76,8 +76,8 @@ class GenreModule {
 class HomeViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(MovieModule.watchRepository, GenreModule.watchRepository) as T
+        if (modelClass.isAssignableFrom(HomeScreenViewModel::class.java)) {
+            return HomeScreenViewModel(MovieModule.watchRepository, GenreModule.watchRepository) as T
         }
         throw java.lang.IllegalArgumentException("wrong dependency")
     }
