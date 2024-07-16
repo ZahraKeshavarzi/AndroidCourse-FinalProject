@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivitySplashscreenBinding
 import com.example.myapplication.features.homeScreen.HomeScreenActivity
-import com.example.myapplication.features.registerScreen.RegisterScreenActivity
 import com.example.myapplication.features.registerScreen.domain.data.Constants
-
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -26,10 +26,9 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initialBinding()
-        initialSharedPreference()
+        initialSharedPreferenceWithDelay()
     }
     //endregion
-
 
     //region methods
     @SuppressLint("SetTextI18n")
@@ -38,21 +37,20 @@ class SplashActivity : AppCompatActivity() {
         binding.applicationName.text = "Top Movies App"
     }
 
-    private fun initialSharedPreference() {
-        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_KEY, MODE_PRIVATE)
-        val token = sharedPreferences.getString(Constants.USER_TOKEN_KEY, "").toString()
-        if (token.isEmpty()) {
-            val intent = Intent(this, RegisterScreenActivity::class.java)
-            startActivity(intent)
-        }
-        else {
-            val intent = Intent(this, HomeScreenActivity::class.java)
-            startActivity(intent)
-        }
+    private fun initialSharedPreferenceWithDelay() {
 
+        Handler(Looper.getMainLooper()).postDelayed({
+            sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_KEY, MODE_PRIVATE)
+            val token = sharedPreferences.getString(Constants.USER_TOKEN_KEY, "").toString()
+            val intent = if (token.isEmpty()) {
+                //Intent(this, RegisterScreenActivity::class.java)
+                Intent(this, HomeScreenActivity::class.java)
+            } else {
+                Intent(this, HomeScreenActivity::class.java)
+            }
+            startActivity(intent)
+            finish()
+        }, 4000)
     }
-
     //endregion
-
-
 }

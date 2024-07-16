@@ -9,9 +9,9 @@ class MovieDetailsRepository (private val api: MovieDetailsAPIService) {
         return if (response.isSuccessful) {
             response.body()?.let {
                 Result.success(it)
-            } ?: Result.failure(Throwable("سرویس خطا داشت"))
+            } ?: Result.failure(Throwable("ERROR fetching movies!"))
         } else {
-            Result.failure(Throwable("سرویس انجام نشد"))
+            Result.failure(Throwable("Service FAILED!"))
         }
     }
 }
