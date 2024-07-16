@@ -26,12 +26,21 @@ class API {
                 .addConverterFactory(GsonConverterFactory.create(gson))
 
 
+        val registerScreenService: RegisterAPIService by lazy {
+            apiBuilder
+                .baseUrl(baseURL)
+                .build()
+                .create(RegisterAPIService::class.java)
+        }
+
+
         val homeScreenServiceGenres: GenreAPIService by lazy {
             apiBuilder
                 .baseUrl(baseURL)
                 .build()
                 .create(GenreAPIService::class.java)
         }
+
 
         val homeScreenServiceMovies: MovieBriefAPIService by lazy {
             apiBuilder

@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.features.searchScreen
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,9 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivitySearchscreenBinding
+import com.example.myapplication.features.homeScreen.HomeScreenActivity
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.MovieAdapter
 import com.example.myapplication.features.searchScreen.presentation.viewmodel.SearchScreenViewModel
 import com.example.myapplication.features.searchScreen.presentation.viewmodel.SearchScreenViewModelFactory
@@ -58,7 +60,7 @@ class SearchScreenActivity : AppCompatActivity() {
 
 
         searchScreenBinding.homeIcon.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, HomeScreenActivity::class.java)
             startActivity(intent)
         }
     }

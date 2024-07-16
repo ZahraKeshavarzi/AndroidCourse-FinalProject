@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.myapplication.DetailsScreenActivity
+import com.example.myapplication.features.detailsScreen.DetailsScreenActivity
 import com.example.myapplication.databinding.ItemMovieBinding
 import com.example.myapplication.features.homeScreen.domain.data.model.MovieData
 

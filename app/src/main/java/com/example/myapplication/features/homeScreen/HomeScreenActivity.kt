@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.features.homeScreen
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,20 +6,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.databinding.ActivityHomescreenBinding
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.GenreAdapter
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.MovieAdapter
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.PostersSliderAdapter
 import com.example.myapplication.features.homeScreen.presentation.viewmodel.HomeScreenViewModel
 import com.example.myapplication.features.homeScreen.presentation.viewmodel.HomeViewModelFactory
+import com.example.myapplication.features.searchScreen.SearchScreenActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class HomeScreenActivity : AppCompatActivity() {
 
     //region Properties
-    private lateinit var homeScreenBinding: ActivityMainBinding
+    private lateinit var homeScreenBinding: ActivityHomescreenBinding
     private lateinit var homeScreenViewModel: HomeScreenViewModel
     //endregion
 
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     //endregion
 
     private fun initialBinding() {
-        homeScreenBinding = ActivityMainBinding.inflate(layoutInflater)
+        homeScreenBinding = ActivityHomescreenBinding.inflate(layoutInflater)
         setContentView(homeScreenBinding.root)
     }
 

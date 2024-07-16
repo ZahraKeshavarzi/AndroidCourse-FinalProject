@@ -14,22 +14,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MyApplication">
+            android:name=".features.splashScreen.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".DetailsScreenActivity">
+        <activity android:name=".features.registerScreen.RegisterScreenActivity">
         </activity>
 
-        <activity android:name=".SearchScreenActivity">
+        <activity
+            android:name=".features.homeScreen.HomeScreenActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MyApplication">
+        </activity>
+
+        <activity android:name=".features.detailsScreen.DetailsScreenActivity">
+        </activity>
+
+        <activity android:name=".features.searchScreen.SearchScreenActivity">
         </activity>
 
     </application>

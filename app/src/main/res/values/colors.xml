@@ -12,4 +12,5 @@
     <color name="Red">#FF0000</color>
     <color name="Yellow">#F2AE4B</color>
     <color name="TwilightSlate">#1D1D26</color>
+    <color name="Transparent">#FFFF0000</color>
 </resources>

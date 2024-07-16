@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.features.detailsScreen
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
