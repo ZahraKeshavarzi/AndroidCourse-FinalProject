@@ -35,6 +35,8 @@
 
         <activity android:name=".features.searchScreen.SearchScreenActivity"></activity>
 
+        <activity android:name=".features.favoritesScreen.FavoritesScreenActivity"></activity>
+
     </application>
 
 </manifest>

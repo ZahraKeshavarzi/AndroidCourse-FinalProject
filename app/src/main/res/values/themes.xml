@@ -11,7 +11,7 @@
         <item name="colorOnError">@color/white</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/black</item>
-        <item name="android:statusBarColor">@color/Yellow</item>
+        <item name="android:statusBarColor">@color/EerieBlack</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 

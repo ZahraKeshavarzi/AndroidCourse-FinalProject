@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivitySearchscreenBinding
+import com.example.myapplication.features.favoritesScreen.FavoritesScreenActivity
 import com.example.myapplication.features.homeScreen.HomeScreenActivity
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.MovieAdapter
 import com.example.myapplication.features.searchScreen.presentation.viewmodel.SearchScreenViewModel
@@ -61,6 +62,11 @@ class SearchScreenActivity : AppCompatActivity() {
 
         searchScreenBinding.homeIcon.setOnClickListener {
             val intent = Intent(this, HomeScreenActivity::class.java)
+            startActivity(intent)
+        }
+
+        searchScreenBinding.likeIcon.setOnClickListener {
+            val intent = Intent(this, FavoritesScreenActivity::class.java)
             startActivity(intent)
         }
     }

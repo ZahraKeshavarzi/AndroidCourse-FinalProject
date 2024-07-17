@@ -11,8 +11,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityHomescreenBinding
+import com.example.myapplication.features.favoritesScreen.FavoritesScreenActivity
 import com.example.myapplication.features.homeScreen.domain.data.model.MovieData
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.GenreAdapter
 import com.example.myapplication.features.homeScreen.presentation.ui.adapters.MovieAdapter
@@ -30,14 +32,21 @@ class HomeScreenActivity : AppCompatActivity(), PostersSliderAdapter.OnItemSelec
     private lateinit var indicatorViews: MutableList<ImageView>
     private lateinit var homeScreenBinding: ActivityHomescreenBinding
     private lateinit var homeScreenViewModel: HomeScreenViewModel
+
+
     private var moviesList: List<MovieData> = emptyList()
     private lateinit var layoutManager: LinearLayoutManager
     private val handler = Handler(Looper.getMainLooper())
+    private var isDragging = false
+    private var scrolledDistance = 0
+
     private val sliderRunnable = object : Runnable {
         override fun run() {
-            val nextItem = (layoutManager.findFirstVisibleItemPosition() + 1) % moviesList.size
-            homeScreenBinding.postersSlider.smoothScrollToPosition(nextItem)
-            highlightIndicator(nextItem)
+            if (!isDragging) {
+                val nextItem = (layoutManager.findFirstVisibleItemPosition() + 1) % moviesList.size
+                homeScreenBinding.postersSlider.smoothScrollToPosition(nextItem)
+                highlightIndicator(nextItem)
+            }
             handler.postDelayed(this, 4000)
         }
     }
@@ -68,7 +77,6 @@ class HomeScreenActivity : AppCompatActivity(), PostersSliderAdapter.OnItemSelec
             startAutoSlide()
         }
 
-
         homeScreenViewModel.genres.observe(this) { genres ->
             val genreAdapter = GenreAdapter(genres.data)
             homeScreenBinding.genresList.adapter = genreAdapter
@@ -85,6 +93,8 @@ class HomeScreenActivity : AppCompatActivity(), PostersSliderAdapter.OnItemSelec
         }
 
         homeScreenBinding.likeIcon.setOnClickListener {
+            val intent = Intent(this, FavoritesScreenActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -98,6 +108,43 @@ class HomeScreenActivity : AppCompatActivity(), PostersSliderAdapter.OnItemSelec
         layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         homeScreenBinding.postersSlider.layoutManager = layoutManager
         homeScreenBinding.postersSlider.itemAnimator = DefaultItemAnimator()
+
+        homeScreenBinding.postersSlider.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                    val visibleChild = layoutManager.findViewByPosition(firstVisibleItemPosition)
+                    val halfWidth = recyclerView.width / 2
+
+                    if (visibleChild != null) {
+                        val childMidpoint = (visibleChild.left + visibleChild.right) / 2
+                        val childWidth = visibleChild.width
+
+                        if (Math.abs(childMidpoint - halfWidth) >= childWidth / 2) {
+                            val nextItem = if (childMidpoint > halfWidth) {
+                                firstVisibleItemPosition + 1
+                            } else {
+                                firstVisibleItemPosition
+                            }
+                            homeScreenBinding.postersSlider.smoothScrollToPosition(nextItem)
+                            highlightIndicator(nextItem)
+                        } else {
+                            homeScreenBinding.postersSlider.smoothScrollToPosition(firstVisibleItemPosition)
+                            highlightIndicator(firstVisibleItemPosition)
+                        }
+                    }
+                    isDragging = false
+                } else if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    isDragging = true
+                }
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                scrolledDistance += dx
+            }
+        })
     }
 
     private fun initIndicatorDots() {
@@ -148,8 +195,4 @@ class HomeScreenActivity : AppCompatActivity(), PostersSliderAdapter.OnItemSelec
         handler.postDelayed(sliderRunnable, 4000)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        handler.removeCallbacks(sliderRunnable)
-    }
 }

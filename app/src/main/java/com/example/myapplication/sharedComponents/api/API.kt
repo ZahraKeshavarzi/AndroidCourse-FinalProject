@@ -66,6 +66,14 @@ class API {
         }
 
 
+        val favoriteMoviesAPIService: FavoriteMoviesAPIService by lazy {
+            apiBuilder
+                .baseUrl(baseURL)
+                .build()
+                .create(FavoriteMoviesAPIService::class.java)
+        }
+
+
         private val gson: Gson get() = GsonBuilder().setLenient().create()
 
         private val interceptor: HttpLoggingInterceptor

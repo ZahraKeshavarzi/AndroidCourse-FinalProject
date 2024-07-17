@@ -7,9 +7,9 @@
     android:background="@color/EerieBlack"
     tools:context=".features.homeScreen.HomeScreenActivity">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_menu"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -17,7 +17,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/posters_slider"
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginRight="16dp"
                 android:text="Genres"
                 android:textColor="@color/Yellow"
@@ -85,12 +85,13 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
                 android:clipToPadding="false"
-                android:paddingBottom="60dp"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/latestMovies_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/bottom_menu"

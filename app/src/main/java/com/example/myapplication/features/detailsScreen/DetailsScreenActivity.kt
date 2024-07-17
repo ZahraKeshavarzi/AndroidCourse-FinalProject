@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityDetailsscreenBinding
+import com.example.myapplication.features.detailsScreen.domain.data.model.MovieDetailsData
 import com.example.myapplication.features.detailsScreen.presentation.ui.adapters.MovieImageAdapter
 import com.example.myapplication.features.detailsScreen.presentation.viewmodel.DetailsScreenViewModel
 import com.example.myapplication.features.detailsScreen.presentation.viewmodel.DetailsScreenViewModelFactory
+import com.example.myapplication.sharedComponents.MovieAppModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,6 +53,14 @@ class DetailsScreenActivity : AppCompatActivity() {
                 finish()
             }
 
+            updateFavoriteIcon(movieDetail.data)
+
+            detailsScreenBinding.favoriteIcon.setOnClickListener {
+                val newMovie = movieDetail.data
+                MovieAppModule.toggleMovieInList(newMovie)
+                updateFavoriteIcon(newMovie)
+            }
+
             Glide.with((detailsScreenBinding.moviePoster.context))
                 .load(movieDetail.data.poster)
                 .into(detailsScreenBinding.moviePoster)
@@ -77,5 +88,16 @@ class DetailsScreenActivity : AppCompatActivity() {
             detailsScreenViewModel.getMovieDetails((movieId))
         }
     }
+
+    private fun updateFavoriteIcon(movie: MovieDetailsData) {
+        val isFavorite = MovieAppModule.getMovieList().any { it.id == movie.id }
+        val color = if (isFavorite) {
+            getColor(R.color.Red)
+        } else {
+            getColor(R.color.Gray)
+        }
+        detailsScreenBinding.favoriteIcon.setColorFilter(color)
+    }
     //endregion
 }
+
