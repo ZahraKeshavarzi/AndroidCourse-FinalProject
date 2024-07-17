@@ -8,7 +8,8 @@ class MovieApp : Application() {
     //region lifecycle
     override fun onCreate() {
         super.onCreate()
-        MovieAppModule.initDatabase(this)
+        MovieAppModule.initSharedPreferences(this)
+        //MovieAppModule.initDatabase(this)
     }
     //endregion
 }

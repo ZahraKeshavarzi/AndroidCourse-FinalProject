@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/EerieBlack"
     android:layout_height="match_parent">
 
     <ImageView
@@ -13,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/fingerprint_icon" />
+        android:src="@drawable/fingerprint_icon" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,16 +37,19 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:hint="Name"
-            app:cursorColor="@color/TwilightSlate"
-            android:textColorHint="@color/TwilightSlate"
+            app:cursorColor="@color/Yellow"
+            android:textColorHint="@color/Yellow"
+            app:boxStrokeColor="@color/Yellow"
             android:backgroundTint="@color/TwilightSlate"
-            app:startIconDrawable="@drawable/user_icon">
+            app:startIconTint="@color/Yellow"
+            app:startIconDrawable="@drawable/resizableuser">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textColor="@color/Yellow"
                 android:paddingStart="40dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -60,13 +64,16 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:hint="Student Number"
-            app:cursorColor="@color/TwilightSlate"
-            android:textColorHint="@color/TwilightSlate"
+            app:cursorColor="@color/Yellow"
+            app:boxStrokeColor="@color/Yellow"
+            android:textColorHint="@color/Yellow"
             android:backgroundTint="@color/TwilightSlate"
-            app:startIconDrawable="@drawable/user_icon">
+            app:startIconTint="@color/Yellow"
+            app:startIconDrawable="@drawable/resizableuser">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/student_number_edit_text"
+                android:textColor="@color/Yellow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -84,15 +91,18 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:hint="Email"
-            app:cursorColor="@color/TwilightSlate"
-            android:textColorHint="@color/TwilightSlate"
+            app:cursorColor="@color/Yellow"
+            app:boxStrokeColor="@color/Yellow"
+            android:textColorHint="@color/Yellow"
             android:backgroundTint="@color/TwilightSlate"
-            app:startIconDrawable="@drawable/user_icon">
+            app:startIconTint="@color/Yellow"
+            app:startIconDrawable="@drawable/resizableemail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/Yellow"
                 android:inputType="textEmailAddress"
                 android:paddingStart="40dp" />
 
@@ -109,16 +119,20 @@
             android:layout_marginBottom="10dp"
             android:hint="Password"
             app:passwordToggleEnabled="true"
-            app:cursorColor="@color/TwilightSlate"
-            android:textColorHint="@color/TwilightSlate"
+            app:passwordToggleTint="@color/Yellow"
+            app:cursorColor="@color/Yellow"
+            app:boxStrokeColor="@color/Yellow"
+            android:textColorHint="@color/Yellow"
             android:backgroundTint="@color/TwilightSlate"
-            app:startIconDrawable="@color/TwilightSlate">
+            app:startIconTint="@color/Yellow"
+            app:startIconDrawable="@drawable/resizablelock">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textColor="@color/Yellow"
                 android:paddingStart="40dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -129,6 +143,8 @@
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginTop="50dp"
+            android:textColor="@color/black"
+            style="bold"
             android:backgroundTint="@color/Yellow"
             android:text="SUBMIT" />
 

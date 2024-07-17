@@ -1,17 +1,18 @@
 //package com.example.myapplication.sharedComponents.db
 //
-//import android.graphics.Bitmap
 //import androidx.room.Entity
 //import androidx.room.PrimaryKey
 //
 //@Entity(tableName = Constants.FAVORITE_MOVIE_TABLE)
-//data class FavoriteMoviesEntity (
+//data class FavoriteMoviesEntity(
 //    @PrimaryKey(autoGenerate = true)
-//    val userID: Int,
-//    val name: String,
-//    val rate: Int,
-//    val year: Int,
+//    val id: Int,
+//    val title: String,
+//    val year: String,
 //    val country: String,
-//    val image: Bitmap,
+//    val imdbRating: String,
+//    val poster: String,
+//    val genres: List<String>,
+//    val images: List<String>,
 //    val timestamp: Long = System.currentTimeMillis()
 //)

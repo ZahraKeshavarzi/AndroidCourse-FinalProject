@@ -8,16 +8,14 @@ import com.example.myapplication.databinding.ItemPosterssliderBinding
 import com.example.myapplication.features.homeScreen.domain.data.model.MovieData
 
 class PostersSliderAdapter(
-    private val items: List<MovieData>
+    private val items: List<MovieData>,
+    private val listener: OnItemSelectedListener
 ) : RecyclerView.Adapter<PostersSliderAdapter.ViewHolder>() {
 
+    private var selectedItem = 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding =
-            ItemPosterssliderBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        val binding = ItemPosterssliderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -27,19 +25,66 @@ class PostersSliderAdapter(
 
     override fun getItemCount() = items.size
 
-    inner class ViewHolder(private val binding: ItemPosterssliderBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemPosterssliderBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                listener.onItemSelected(adapterPosition)
+            }
+        }
+
         fun bindData(movieData: MovieData) {
+
             Glide.with(binding.moviePoster.context)
                 .load(movieData.poster)
                 .into(binding.moviePoster)
-            binding.movieTitle.text = movieData.title
-            binding.rating.text = movieData.imdbRating
-            binding.country.text = movieData.country
-            binding.year.text = movieData.year
-
-            binding.root.setOnClickListener {
-            }
+            // Bind other views
         }
     }
+
+    interface OnItemSelectedListener {
+        fun onItemSelected(position: Int)
+    }
+
+    fun setSelectedItem(position: Int) {
+        selectedItem = position
+        notifyDataSetChanged()
+    }
 }
+
+//class PostersSliderAdapter(
+//    private val items: List<MovieData>
+//) : RecyclerView.Adapter<PostersSliderAdapter.ViewHolder>() {
+//
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+//        val binding =
+//            ItemPosterssliderBinding.inflate(
+//                LayoutInflater.from(parent.context),
+//                parent,
+//                false
+//            )
+//        return ViewHolder(binding)
+//    }
+//
+//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+//        holder.bindData(items[position])
+//    }
+//
+//    override fun getItemCount() = items.size
+//
+//    inner class ViewHolder(private val binding: ItemPosterssliderBinding) :
+//        RecyclerView.ViewHolder(binding.root) {
+//        fun bindData(movieData: MovieData) {
+//            Glide.with(binding.moviePoster.context)
+//                .load(movieData.poster)
+//                .into(binding.moviePoster)
+//            binding.movieTitle.text = movieData.title
+//            binding.rating.text = movieData.imdbRating
+//            binding.country.text = movieData.country
+//            binding.year.text = movieData.year
+//
+//            binding.root.setOnClickListener {
+//            }
+//        }
+//    }
+//}

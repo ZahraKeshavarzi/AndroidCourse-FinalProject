@@ -10,10 +10,10 @@
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    fun insertMovie(movie: FavoriteMoviesEntity)
 //
-//    @Query("DELETE FROM ${Constants.FAVORITE_MOVIE_TABLE} WHERE name = :movieName")
-//    fun deleteMovie(movieName: String)
+//    @Query("DELETE FROM ${Constants.FAVORITE_MOVIE_TABLE} WHERE title = :name")
+//    fun deleteMovie(name: String)
 //
-//    @Query("SELECT COUNT(*) FROM favorites WHERE name = :name")
+//    @Query("SELECT COUNT(*) FROM ${Constants.FAVORITE_MOVIE_TABLE} WHERE title = :name")
 //    fun isFavorite(name: String): Int
 //
 //    @Query("SELECT * FROM ${Constants.FAVORITE_MOVIE_TABLE} ORDER BY timestamp DESC")

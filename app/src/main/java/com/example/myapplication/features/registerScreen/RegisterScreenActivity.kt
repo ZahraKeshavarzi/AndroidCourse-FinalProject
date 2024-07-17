@@ -82,14 +82,14 @@ class RegisterScreenActivity : AppCompatActivity() {
 
     private fun checkInput(name: String, studentNumber: String, email: String, password: String): Boolean {
         val namePattern = "^[a-zA-Z\\s]{1,20}$"
-        val studentNumberPattern = "^[0-9]{7,8}$"
+        val studentNumberPattern = "^[0-9]{6,8}$"
         val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$"
 
         if (name.isEmpty()) {
             binding.nameEditText.error = "name can't be empty"
             return false
         }
-        if (!Pattern.matches(name, namePattern)) {
+        if (!Pattern.matches(namePattern, name)) {
             binding.nameEditText.error = "name should be 1 to 20 letters"
             return false
         }
@@ -98,7 +98,7 @@ class RegisterScreenActivity : AppCompatActivity() {
             binding.studentNumberEditText.error = "student number can't be empty"
             return false
         }
-        if (!Pattern.matches(studentNumber, studentNumberPattern)) {
+        if (!Pattern.matches(studentNumberPattern, studentNumber)) {
             binding.studentNumberEditText.error = "student number should be 7 to 8 numbers"
             return false
         }
@@ -116,7 +116,7 @@ class RegisterScreenActivity : AppCompatActivity() {
             binding.passwordEditText.error = "password can't be empty"
             return false
         }
-        if (!Pattern.matches(password, passwordPattern)) {
+        if (!Pattern.matches(passwordPattern, password)) {
             binding.passwordEditText.error = "password should be at least 6 characters, containing at least 1 letter and 1 digit"
             return false
         }
