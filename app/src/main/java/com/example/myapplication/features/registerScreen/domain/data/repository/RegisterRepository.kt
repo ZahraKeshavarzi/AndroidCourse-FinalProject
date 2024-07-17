@@ -9,7 +9,7 @@ class RegisterRepository(private val api: RegisterAPIService) {
         return if (response.isSuccessful) {
             response.body()?.let {
                 Result.success(it)
-            } ?: Result.failure(Throwable("ERROR Registering User!"))
+            } ?: Result.failure(Throwable("ERROR registering!"))
         } else {
             Result.failure(Throwable("Service FAILED!"))
         }

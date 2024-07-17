@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivitySplashscreenBinding
 import com.example.myapplication.features.homeScreen.HomeScreenActivity
+import com.example.myapplication.features.registerScreen.RegisterScreenActivity
 import com.example.myapplication.features.registerScreen.domain.data.Constants
 
 @SuppressLint("CustomSplashScreen")
@@ -43,14 +44,13 @@ class SplashActivity : AppCompatActivity() {
             sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_KEY, MODE_PRIVATE)
             val token = sharedPreferences.getString(Constants.USER_TOKEN_KEY, "").toString()
             val intent = if (token.isEmpty()) {
-                //Intent(this, RegisterScreenActivity::class.java)
-                Intent(this, HomeScreenActivity::class.java)
+                Intent(this, RegisterScreenActivity::class.java)
             } else {
                 Intent(this, HomeScreenActivity::class.java)
             }
             startActivity(intent)
             finish()
-        }, 4000)
+        }, 3000)
     }
     //endregion
 }

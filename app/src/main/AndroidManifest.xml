@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MovieApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,12 +17,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".features.splashScreen.SplashActivity">
-
-        </activity>
-
-
-        <activity android:name=".features.homeScreen.HomeScreenActivity"
+            android:name=".features.splashScreen.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,11 +25,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".features.detailsScreen.DetailsScreenActivity">
+        <activity android:name=".features.registerScreen.RegisterScreenActivity"></activity>
+
+        <activity android:name=".features.homeScreen.HomeScreenActivity">
+
         </activity>
 
-        <activity android:name=".features.searchScreen.SearchScreenActivity">
-        </activity>
+        <activity android:name=".features.detailsScreen.DetailsScreenActivity"></activity>
+
+        <activity android:name=".features.searchScreen.SearchScreenActivity"></activity>
 
     </application>
 
