@@ -2,11 +2,13 @@ package com.example.myapplication.features.detailsScreen.presentation.ui.adapter
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.databinding.ItemImageBinding
+import com.example.myapplication.features.detailsScreen.FullScreenImageActivity
 
 
 class MovieImageAdapter(private val movieImages: List<String>) :
@@ -37,7 +39,11 @@ class MovieImageAdapter(private val movieImages: List<String>) :
                 .into(binding.MovieImage)
 
             binding.root.setOnClickListener {
-                // Show picture in full size
+                val context = binding.root.context
+                val intent = Intent(context, FullScreenImageActivity::class.java).apply {
+                    putExtra("IMAGE_URL", item)
+                }
+                context.startActivity(intent)
             }
         }
     }

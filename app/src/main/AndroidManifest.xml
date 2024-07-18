@@ -31,6 +31,8 @@
 
         </activity>
 
+        <activity android:name=".features.detailsScreen.FullScreenImageActivity"></activity>
+
         <activity android:name=".features.detailsScreen.DetailsScreenActivity"></activity>
 
         <activity android:name=".features.searchScreen.SearchScreenActivity"></activity>
