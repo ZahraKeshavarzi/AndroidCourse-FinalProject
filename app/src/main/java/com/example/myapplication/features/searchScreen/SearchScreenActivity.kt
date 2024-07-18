@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.animation.AnimationUtils
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -40,7 +41,10 @@ class SearchScreenActivity : AppCompatActivity() {
     }
 
     private fun initialViewModel() {
-        searchScreenViewModel = ViewModelProvider(this, SearchScreenViewModelFactory())[SearchScreenViewModel::class.java]
+        searchScreenViewModel = ViewModelProvider(
+            this,
+            SearchScreenViewModelFactory()
+        )[SearchScreenViewModel::class.java]
     }
 
     private fun configViewModel() {
@@ -52,6 +56,10 @@ class SearchScreenActivity : AppCompatActivity() {
             searchScreenBinding.resultMoviesRecycler.adapter = movieAdapter
             searchScreenBinding.resultMoviesRecycler.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+            searchScreenBinding.resultMoviesRecycler.layoutAnimation =
+                AnimationUtils.loadLayoutAnimation(this, R.anim.recycler_animation)
+            searchScreenBinding.resultMoviesRecycler.scheduleLayoutAnimation()
         }
 
 
@@ -74,7 +82,8 @@ class SearchScreenActivity : AppCompatActivity() {
 
     private fun callAPI() {
 
-        val searchEditText = searchScreenBinding.searchBarCard.findViewById<EditText>(R.id.search_edit_text)
+        val searchEditText =
+            searchScreenBinding.searchBarCard.findViewById<EditText>(R.id.search_edit_text)
 
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

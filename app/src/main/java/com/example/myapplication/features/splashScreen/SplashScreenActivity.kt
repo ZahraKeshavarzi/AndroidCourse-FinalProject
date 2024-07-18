@@ -16,7 +16,7 @@ import com.example.myapplication.features.registerScreen.RegisterScreenActivity
 import com.example.myapplication.features.registerScreen.domain.data.Constants
 
 @SuppressLint("CustomSplashScreen")
-class SplashActivity : AppCompatActivity() {
+class SplashScreenActivity : AppCompatActivity() {
 
     //region properties
     private lateinit var binding: ActivitySplashscreenBinding
@@ -47,11 +47,9 @@ class SplashActivity : AppCompatActivity() {
         binding.applicationLogo.setImageResource(R.drawable.application_logo)
         binding.applicationName.text = "Top Movies App"
 
-        // Start rotation animation
         val rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate_animation)
         binding.applicationLogo.startAnimation(rotateAnimation)
 
-        // Play sound
         mediaPlayer = MediaPlayer.create(this, R.raw.splash_sound)
         mediaPlayer.start()
     }
