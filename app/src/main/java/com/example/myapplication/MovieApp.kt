@@ -9,7 +9,6 @@ class MovieApp : Application() {
     override fun onCreate() {
         super.onCreate()
         MovieAppModule.initSharedPreferences(this)
-        //MovieAppModule.initDatabase(this)
     }
     //endregion
 }
