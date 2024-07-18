@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.features.homeScreen.domain.data.model.MovieDescription
+import com.example.myapplication.features.homeScreen.domain.data.model.MovieMetadata
 import com.example.myapplication.features.homeScreen.domain.data.model.MovieResponse
 import com.example.myapplication.features.searchScreen.domain.data.repository.MovieSearchRepository
 import com.example.myapplication.sharedComponents.api.API
@@ -33,6 +35,24 @@ class SearchScreenViewModel(private val movieSearchRepository: MovieSearchReposi
                 }
             }
         }
+    }
+
+
+    fun clearMovies() {
+        val emptyResponse = MovieResponse(
+            status = 0,
+            description = MovieDescription(en="", fa=""),
+            data = emptyList(),
+            metadata = MovieMetadata(
+                hasNext = false,
+                hasPrev = false,
+                currentPage = 0,
+                perPage = 0,
+                pageCount = 0,
+                totalCount = 0
+            )
+        )
+        _movies.postValue(emptyResponse)
     }
 }
 
