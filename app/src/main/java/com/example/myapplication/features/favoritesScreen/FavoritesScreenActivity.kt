@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ActivityFavoritescreenBinding
 import com.example.myapplication.features.favoritesScreen.presentation.ui.adapters.FavoriteMoviesAdapter
@@ -42,12 +43,16 @@ class FavoritesScreenActivity : AppCompatActivity() {
 
     private fun configViewModel() {
         viewModel.movies.observe(this) { favoriteMovies ->
+
             val movieAdapter = FavoriteMoviesAdapter(favoriteMovies)
             binding.favoriteMoviesRecycler.adapter = movieAdapter
             binding.favoriteMoviesRecycler.layoutManager =
-                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true).apply {
+                    stackFromEnd = true
+                }
+            binding.favoriteMoviesRecycler.itemAnimator = DefaultItemAnimator()
 
-            if (favoriteMovies.isEmpty()) {
+            if (viewModel.isEmptyFavorites()) {
                 binding.emptyIconImage.visibility = View.VISIBLE
                 binding.emptyText.visibility = View.VISIBLE
                 binding.favoriteMoviesRecycler.visibility = View.GONE
@@ -71,4 +76,5 @@ class FavoritesScreenActivity : AppCompatActivity() {
     private fun getFavorites() {
         viewModel.getFavoriteMovies()
     }
+    //endregion
 }

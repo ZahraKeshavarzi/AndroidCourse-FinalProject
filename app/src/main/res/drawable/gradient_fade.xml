@@ -1,5 +1,4 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Top gradient -->
     <item>
         <shape android:shape="rectangle">
             <gradient
@@ -28,7 +27,6 @@
                 android:centerX="0.8"/>
         </shape>
     </item>
-    <!-- Right gradient -->
     <item android:right="0dp">
         <shape android:shape="rectangle">
             <gradient

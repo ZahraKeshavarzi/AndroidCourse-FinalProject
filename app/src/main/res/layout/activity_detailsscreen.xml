@@ -23,7 +23,7 @@
                 android:layout_height="472dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/dogdayafternoon_image"
-                android:alpha="0.1" />
+                android:alpha="0.05" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,12 +71,13 @@
                         android:layout_width="300dp"
                         android:layout_gravity="center"
                         android:layout_height="500dp"
-                        android:scaleType="fitXY"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/dogdayafternoon_image" />
 
                     <View
                         android:id="@+id/gradientOverlay"
-                        android:layout_width="match_parent"
+                        android:layout_width="300dp"
+                        android:layout_gravity="center"
                         android:layout_height="match_parent"
                         android:background="@drawable/gradient_fade" />
 

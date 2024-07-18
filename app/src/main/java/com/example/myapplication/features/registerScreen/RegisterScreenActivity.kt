@@ -82,7 +82,7 @@ class RegisterScreenActivity : AppCompatActivity() {
 
     private fun checkInput(name: String, studentNumber: String, email: String, password: String): Boolean {
         val namePattern = "^[a-zA-Z\\s]{1,20}$"
-        val studentNumberPattern = "^[0-9]{6,8}$"
+        val studentNumberPattern = "^[0-9]{7,8}$"
         val passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$"
 
         if (name.isEmpty()) {

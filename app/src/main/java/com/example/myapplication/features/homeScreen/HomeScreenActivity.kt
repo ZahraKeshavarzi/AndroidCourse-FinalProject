@@ -86,7 +86,7 @@ class HomeScreenActivity : AppCompatActivity(), PostersSliderAdapter.OnItemSelec
         HomeScreenViewModel.genreId.observe(this) { genreID ->
             homeScreenViewModel.getAllMovies(genreID)
         }
-
+        
         homeScreenBinding.searchIcon.setOnClickListener {
             val intent = Intent(this, SearchScreenActivity::class.java)
             startActivity(intent)
