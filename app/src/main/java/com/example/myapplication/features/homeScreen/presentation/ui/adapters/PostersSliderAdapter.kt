@@ -42,6 +42,7 @@ class PostersSliderAdapter(
             binding.movieTitle.text = movieData.title
             binding.rating.text = movieData.imdbRating
             binding.country.text = movieData.country
+            binding.year.text = movieData.year
         }
     }
 

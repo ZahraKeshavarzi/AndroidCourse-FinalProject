@@ -10,7 +10,6 @@
             android:id="@+id/fullscreenImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/dogdayafternoon_image"
             android:background="@color/EerieBlack"
             android:scaleType="fitCenter" />
 

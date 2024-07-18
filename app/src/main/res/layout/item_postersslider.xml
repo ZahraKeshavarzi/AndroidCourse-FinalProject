@@ -20,8 +20,7 @@
             android:id="@+id/moviePoster"
             android:layout_width="match_parent"
             android:layout_height="420dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/dogdayafternoon_image" />
+            android:scaleType="fitXY" />
 
         <View
             android:id="@+id/gradientOverlay"
@@ -40,7 +39,6 @@
                 android:id="@+id/movieTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dog Day Afternoon"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:gravity="center"
@@ -68,8 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/Gray"
-                    android:textSize="16sp"
-                    android:text="8.0"/>
+                    android:textSize="16sp"/>
 
                 <View
                     android:id="@+id/divider1"
@@ -84,8 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/Gray"
-                    android:textSize="16sp"
-                    android:text="USA"/>
+                    android:textSize="16sp"/>
 
                 <View
                     android:id="@+id/divider2"
@@ -100,8 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/Gray"
-                    android:textSize="16sp"
-                    android:text="1975"/>
+                    android:textSize="16sp"/>
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

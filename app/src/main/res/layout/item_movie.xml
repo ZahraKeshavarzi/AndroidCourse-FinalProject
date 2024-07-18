@@ -28,7 +28,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Dog Day Afternoon"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -52,7 +51,6 @@
                 android:id="@+id/movie_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="8.0"
                 android:textColor="@color/Gray"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -76,7 +74,6 @@
                 android:id="@+id/movie_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="USA"
                 android:textColor="@color/Gray"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -100,7 +97,6 @@
                 android:id="@+id/movie_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1975"
                 android:textColor="@color/Gray"
                 android:textSize="18sp" />
         </LinearLayout>
